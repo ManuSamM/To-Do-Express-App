@@ -62,16 +62,24 @@ export default function EditTask() {
     router.push("/");
   };
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault(); // Prevent default form submission (page reload)
+    handleSaveEdit(); // Save the edited task
+  };
+
   return (
     <div>
       <h1>Edit Task</h1>
       <div>
-        <input
-          type="text"
-          value={editTaskText}
-          onChange={(e) => setEditTaskText(e.target.value)}
-        />
-        <button onClick={handleSaveEdit}>Save</button>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            value={editTaskText}
+            onChange={(e) => setEditTaskText(e.target.value)}
+            placeholder="Edit your task"
+          />
+          <button type="submit">Save</button>
+        </form>
         <button onClick={handleCancel}>Cancel</button>
       </div>
     </div>
